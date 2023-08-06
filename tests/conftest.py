@@ -20,15 +20,16 @@ def setup(request):
         service_obj = Service("/Users/facundo.huser/Documents/ChromeDriver/chromedriver")
         driver = webdriver.Chrome(service=service_obj)
         driver.maximize_window()
-        driver.get("https://www.saucedemo.com/")
+        driver.get("https://www.google.com/")
         request.cls.driver = driver
     elif browser_name == "firefox":
         service_obj1 = Service("/Users/facundo.huser/Documents/GeckoDriver/geckodriver")
         driver = webdriver.Firefox(service=service_obj1)
         driver.maximize_window()
-        driver.get("https://www.saucedemo.com/")
+        driver.get("https://www.google.com/")
         request.cls.driver = driver
-
+    else:
+        raise ValueError("Invalid browser name. Supported browsers: 'chrome' and 'firefox'")
     # this step has teardown. It executes after the rest has been executed
     yield
     driver.close()
